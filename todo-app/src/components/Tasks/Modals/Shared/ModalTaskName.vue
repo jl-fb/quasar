@@ -5,6 +5,7 @@
     outline
     type="text"
     label="Nome"
+    v-select-all
     autofocus
     ref="name"
     :rules="[val => val && val.length > 0 || 'Campo Obrigatório']"
@@ -21,9 +22,13 @@
 </template>
 
 <script>
+import { selectAll } from "../../../../directives/directive-select-all";
 export default {
   name: "ModalTaskName",
-  props: ["name"]
+  props: ["name"],
+  directives: {
+    selectAll
+  }
 };
 </script>
 

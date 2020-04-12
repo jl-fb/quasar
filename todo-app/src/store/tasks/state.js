@@ -18,9 +18,10 @@ export default function () {
         completed: false,
         dueDate: "04/04/2020",
         dueTime: "20:40"
-      },
+      }
     },
-    search: ""
+    search: "",
+    sort: "dueDate"
     /* tasks: [
     {
       id: 1,

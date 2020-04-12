@@ -2,13 +2,8 @@
   <q-layout view="hHh lpR fFf">
     <q-header elevated>
       <q-toolbar>
-        <q-toolbar-title class="absolute-center">
-          Shop List
-        </q-toolbar-title>
-
-        <div class="fixed-right" style="height:50px">
-          Quasar v{{ $q.version }}
-        </div>
+        <q-toolbar-title class="absolute-center">Shop List</q-toolbar-title>
+        <q-btn label="Login" icon-right="account_circle" flat class="absolute-right" to="/auth"></q-btn>
       </q-toolbar>
     </q-header>
     <q-footer>
@@ -33,14 +28,8 @@
       content-class="bg-grey-1"
     >
       <q-list>
-        <q-item-label header class="text-grey-8">
-          Navigation Menu
-        </q-item-label>
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
+        <q-item-label header class="text-grey-8">Navigation Menu</q-item-label>
+        <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
       </q-list>
     </q-drawer>
 

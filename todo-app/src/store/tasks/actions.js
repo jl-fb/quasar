@@ -28,3 +28,8 @@ export function setSearch({ commit }, payload) {
 
   commit('tasks/setSearch', payload, { root: true })
 }
+export function setSort({ commit }, payload) {
+  console.log("setSort action", payload);
+
+  commit('tasks/setSort', payload, { root: true })
+}

@@ -18,5 +18,10 @@ export function setSearch(state, payload) {
   console.log("setSearch mutation:", payload);
   state.search = payload
 }
+export function setSort(state, payload) {
+  console.log("setSort mutation:", payload);
+  state.sort = payload
+}
+
 
 

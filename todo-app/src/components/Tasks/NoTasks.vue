@@ -1,5 +1,5 @@
 <template>
-  <q-banner class="bg-grey-3">
+  <q-banner v-if="!this.settings.showTaksOneList" class="bg-grey-3">
     <template v-slot:avatar>
       <q-icon name="check" color="primary" />
     </template>
@@ -11,7 +11,13 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+export default {
+  name: "NoTask",
+  computed: {
+    ...mapGetters("settings", ["settings"])
+  }
+};
 </script>
 
 <style>

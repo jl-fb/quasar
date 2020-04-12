@@ -1,25 +1,56 @@
 <template>
   <q-page class="q-pa-md">
-    <Search class="q-mb-lg" />
-    <p
-      v-if="search && !Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length"
-    >Não encontramos o item pesquisado</p>
-    <NoTasks v-if="!Object.keys(tasksTodo).length && !search" />
+    <div class="q-pa-md absolute full-width full-height column">
+      <div class="row q-mb-lg">
+        <Search class="col" />
+        <Sort class="col-3 q-ml-sm" />
+      </div>
+      <p
+        v-if="search && !Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length"
+      >Não encontramos o item pesquisado</p>
 
-    <TasksTodo v-if="Object.keys(tasksTodo).length" :tasksTodo="tasksTodo" />
+      <q-scroll-area class="scroll-area">
+        <transition
+          appear
+          enter-active-class="animated zoomIn"
+          leave-active-class="animated zoomOut absolute-top"
+        >
+          <NoTasks v-if="!Object.keys(tasksTodo).length && !search" />
+        </transition>
 
-    <TasksCompleted v-if="Object.keys(tasksCompleted).length" :tasksCompleted="tasksCompleted" />
-    <div class="absolute-bottom text-center q-ma-lg">
-      <q-btn
-        class="bg-primary"
-        round
-        flat
-        size="15px"
-        color="white"
-        icon="add"
-        @click="showAddTask = true"
-      ></q-btn>
+        <transition
+          appear
+          enter-active-class="animated zoomIn"
+          leave-active-class="animated zoomOut absolute-top"
+        >
+          <TasksTodo v-if="Object.keys(tasksTodo).length" :tasksTodo="tasksTodo" />
+        </transition>
+
+        <transition
+          appear
+          enter-active-class="animated zoomIn "
+          leave-active-class="animated zoomOut"
+        >
+          <TasksCompleted
+            v-if="Object.keys(tasksCompleted).length"
+            :tasksCompleted="tasksCompleted"
+            class="q-mb-xl"
+          />
+        </transition>
+      </q-scroll-area>
+      <div class="absolute-bottom text-center q-ma-lg no-pointer-events">
+        <q-btn
+          class="bg-primary q-mb-sm all-pointer-events"
+          round
+          flat
+          size="15px"
+          color="white"
+          icon="add"
+          @click="showAddTask = true"
+        ></q-btn>
+      </div>
     </div>
+
     <q-dialog v-model="showAddTask" persistent>
       <AddTask @close="showAddTask = false" />
     </q-dialog>
@@ -44,7 +75,8 @@ export default {
     TasksTodo: require("../components/Tasks/TasksTodo").default,
     TasksCompleted: require("../components/Tasks/TasksCompleted").default,
     NoTasks: require("../components/Tasks/NoTasks").default,
-    Search: require("../components/Tasks/Tools/Search").default
+    Search: require("../components/Tasks/Tools/Search").default,
+    Sort: require("../components/Tasks/Tools/Sort").default
   },
   mounted() {
     this.$root.$on("showAddTask", () => {
@@ -53,3 +85,10 @@ export default {
   }
 };
 </script>
+
+<style>
+.scroll-area {
+  display: flex;
+  flex-grow: 1;
+}
+</style>
