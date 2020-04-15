@@ -8,8 +8,15 @@ export function deleteTask(state, id) {
   console.log("deleteTask mutation:", id);
   Vue.delete(state.tasks, id)
 }
+export function clearTask(state) {
+  console.log("clear mutation:");
+  state.tasks = {}
+}
+export function setTasksDownloaded(state, value) {
+  console.log("setTasksDownloaded mutation:");
 
-
+  state.tasksDownloaded = value
+}
 export function addTask(state, payload) {
   console.log("addTask mutation:", payload);
   Vue.set(state.tasks, payload.id, payload.task)

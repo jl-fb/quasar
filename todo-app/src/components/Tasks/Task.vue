@@ -43,7 +43,7 @@
           icon="edit"
           color="teal"
         ></q-btn>
-        <q-btn @click.stop="deleteTask(id, task.name)" flat round dense icon="delete" color="red"></q-btn>
+        <q-btn @click.stop="taskDelete(id, task.name)" flat round dense icon="delete" color="red"></q-btn>
       </div>
     </q-item-section>
     <q-dialog v-model="showEditTask">
@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     ...mapActions("tasks", ["updateTask", "deleteTask"]),
-    deleteTask(id, name) {
+    taskDelete(id, name) {
       this.$q
         .dialog({
           dark: false,

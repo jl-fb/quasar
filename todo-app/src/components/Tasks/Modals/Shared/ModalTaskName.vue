@@ -2,7 +2,7 @@
   <q-input
     :value="name"
     @input="$emit('update:name', $event)"
-    outline
+    outlined
     type="text"
     label="Nome"
     v-select-all
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { selectAll } from "../../../../directives/directive-select-all";
+import { selectAll } from "src/directives/directive-select-all";
 export default {
   name: "ModalTaskName",
   props: ["name"],

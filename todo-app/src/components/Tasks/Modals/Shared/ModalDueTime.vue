@@ -3,7 +3,7 @@
     v-if="dueDate"
     :value="dueTime"
     @input="$emit('update:dueTime', $event)"
-    outline
+    outlined
     type="text"
     label="Hora"
   >

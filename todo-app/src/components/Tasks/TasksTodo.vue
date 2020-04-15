@@ -17,8 +17,7 @@ export default {
   },
   components: {
     Task: require("../../components/Tasks/Task").default,
-    ListHeader: require("../../components/Tasks/Modals/Shared/ListHeader")
-      .default
+    ListHeader: require("../../components/Shared/ListHeader").default
   }
 };
 </script>

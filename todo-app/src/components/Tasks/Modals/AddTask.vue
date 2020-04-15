@@ -5,7 +5,11 @@
       <q-card-section>
         <ModalTaskName :name.sync="taskToSubmit.name" ref="modalTaskName" />
         <ModalDueDate :dueDate.sync="taskToSubmit.dueDate" />
-        <ModalDueTime :dueTime.sync="taskToSubmit.dueTime" :dueDate="taskToSubmit.dueDate" />
+        <ModalDueTime
+          :dueTime.sync="taskToSubmit.dueTime"
+          :dueDate="taskToSubmit.dueDate"
+          class="q-mt-md"
+        />
       </q-card-section>
       <ModalButtons>Add</ModalButtons>
     </form>
@@ -29,11 +33,11 @@ export default {
     };
   },
   methods: {
-    ...mapActions("tasks", ["addTask"])
-  },
-  submitTask() {
-    this.addTask(this.taskToSubmit);
-    this.$emit("close");
+    ...mapActions("tasks", ["addTask"]),
+    submitTask() {
+      this.addTask(this.taskToSubmit);
+      this.$emit("close");
+    }
   }
 };
 </script>

@@ -3,7 +3,22 @@
     <q-header elevated>
       <q-toolbar>
         <q-toolbar-title class="absolute-center">Shop List</q-toolbar-title>
-        <q-btn label="Login" icon-right="account_circle" flat class="absolute-right" to="/auth"></q-btn>
+        <q-btn
+          v-if="!loggedIn"
+          label="Login"
+          icon-right="account_circle"
+          flat
+          class="absolute-right"
+          to="/auth"
+        ></q-btn>
+        <q-btn
+          v-else
+          @click="logoutUser"
+          label="Logout"
+          icon-right="account_circle"
+          flat
+          class="absolute-right"
+        ></q-btn>
       </q-toolbar>
     </q-header>
     <q-footer>
@@ -40,6 +55,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 import EssentialLink from "components/EssentialLink";
 
 export default {
@@ -95,6 +111,12 @@ export default {
         // }
       ]
     };
+  },
+  computed: {
+    ...mapState("auth", ["loggedIn"])
+  },
+  methods: {
+    ...mapActions("auth", ["logoutUser"])
   }
 };
 </script>

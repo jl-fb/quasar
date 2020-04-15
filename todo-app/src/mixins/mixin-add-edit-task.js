@@ -8,6 +8,7 @@ export default {
             //   this.submitTask();
             // }
             if (!this.$refs.modalTaskName.$refs.name.hasError) {
+                console.log("mixix");
                 this.submitTask();
             }
         },

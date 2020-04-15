@@ -18,11 +18,13 @@
 
       <q-tab-panels v-model="tab" animated>
         <q-tab-panel name="login">
-          <div class="text-h6">Login</div>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          <div class="text-h6">Login</div>
+          <Register :tab="tab" />
         </q-tab-panel>
 
         <q-tab-panel name="register">
-          <div class="text-h6">Register</div>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          <div class="text-h6">Register</div>
+          <Register :tab="tab" />
         </q-tab-panel>
       </q-tab-panels>
     </q-card>
@@ -36,6 +38,9 @@ export default {
     return {
       tab: "login"
     };
+  },
+  components: {
+    Register: require("src/components/Auth/LoginRegister").default
   }
 };
 </script>

@@ -1,54 +1,59 @@
 <template>
-  <q-page class="q-pa-md">
+  <q-page>
     <div class="q-pa-md absolute full-width full-height column">
-      <div class="row q-mb-lg">
-        <Search class="col" />
-        <Sort class="col-3 q-ml-sm" />
-      </div>
-      <p
-        v-if="search && !Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length"
-      >Não encontramos o item pesquisado</p>
+      <template v-if="tasksDownloaded">
+        <div class="row q-mb-lg">
+          <Search class="col" />
+          <Sort class="col-3 q-ml-sm" />
+        </div>
+        <p
+          v-if="search && !Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length"
+        >Não encontramos o item pesquisado</p>
 
-      <q-scroll-area class="scroll-area">
-        <transition
-          appear
-          enter-active-class="animated zoomIn"
-          leave-active-class="animated zoomOut absolute-top"
-        >
-          <NoTasks v-if="!Object.keys(tasksTodo).length && !search" />
-        </transition>
+        <q-scroll-area class="scroll-area">
+          <transition
+            appear
+            enter-active-class="animated zoomIn"
+            leave-active-class="animated zoomOut absolute-top"
+          >
+            <NoTasks v-if="!Object.keys(tasksTodo).length && !search" />
+          </transition>
 
-        <transition
-          appear
-          enter-active-class="animated zoomIn"
-          leave-active-class="animated zoomOut absolute-top"
-        >
-          <TasksTodo v-if="Object.keys(tasksTodo).length" :tasksTodo="tasksTodo" />
-        </transition>
+          <transition
+            appear
+            enter-active-class="animated zoomIn"
+            leave-active-class="animated zoomOut absolute-top"
+          >
+            <TasksTodo v-if="Object.keys(tasksTodo).length" :tasksTodo="tasksTodo" />
+          </transition>
 
-        <transition
-          appear
-          enter-active-class="animated zoomIn "
-          leave-active-class="animated zoomOut"
-        >
-          <TasksCompleted
-            v-if="Object.keys(tasksCompleted).length"
-            :tasksCompleted="tasksCompleted"
-            class="q-mb-xl"
-          />
-        </transition>
-      </q-scroll-area>
-      <div class="absolute-bottom text-center q-ma-lg no-pointer-events">
-        <q-btn
-          class="bg-primary q-mb-sm all-pointer-events"
-          round
-          flat
-          size="15px"
-          color="white"
-          icon="add"
-          @click="showAddTask = true"
-        ></q-btn>
-      </div>
+          <transition
+            appear
+            enter-active-class="animated zoomIn "
+            leave-active-class="animated zoomOut"
+          >
+            <TasksCompleted
+              v-if="Object.keys(tasksCompleted).length"
+              :tasksCompleted="tasksCompleted"
+              class="q-mb-xl"
+            />
+          </transition>
+        </q-scroll-area>
+        <div class="absolute-bottom text-center q-ma-lg no-pointer-events">
+          <q-btn
+            class="bg-primary q-mb-sm all-pointer-events"
+            round
+            flat
+            size="15px"
+            color="white"
+            icon="add"
+            @click="showAddTask = true"
+          ></q-btn>
+        </div>
+      </template>
+      <template v-else>
+        <q-spinner-cube color="primary" class="col self-center" size="4em" />
+      </template>
     </div>
 
     <q-dialog v-model="showAddTask" persistent>
@@ -63,7 +68,7 @@ export default {
   name: "PageIndex",
   computed: {
     ...mapGetters("tasks", ["tasksTodo", "tasksCompleted"]),
-    ...mapState("tasks", ["search"])
+    ...mapState("tasks", ["search", "tasksDownloaded"])
   },
   data() {
     return {

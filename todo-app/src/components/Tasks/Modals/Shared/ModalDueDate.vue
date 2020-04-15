@@ -1,5 +1,5 @@
 <template>
-  <q-input label="Data" :value="dueDate" @input="$emit('update:dueDate', $event)">
+  <q-input label="Data" outlined :value="dueDate" @input="$emit('update:dueDate', $event)">
     <template v-slot:append>
       <q-icon
         v-if="dueDate"
