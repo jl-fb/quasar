@@ -2,8 +2,9 @@ import * as firebase from "firebase/app"
 
 import "firebase/auth"
 import "firebase/database"
+import "firebase/firestore"
 
-let firebaseConfig = {
+const firebaseConfig = {
     apiKey: "AIzaSyDCwDQbp-TwG8MLobxTJbkOdwydqwk-47U",
     authDomain: "teste-tcc-33c9b.firebaseapp.com",
     databaseURL: "https://teste-tcc-33c9b.firebaseio.com",
@@ -13,9 +14,10 @@ let firebaseConfig = {
     appId: "1:950630393936:web:5f9c9fd5be1465ee554955"
 };
 // Initialize Firebase
-let firebaseApp = firebase.initializeApp(firebaseConfig);
+const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-let $auth = firebaseApp.auth()
-let $database = firebaseApp.database()
+const $auth = firebaseApp.auth()
+const $database = firebaseApp.database()
+const $fireStore = firebaseApp.firestore()
 
-export { $auth, $database };
+export { $auth, $database, $fireStore };

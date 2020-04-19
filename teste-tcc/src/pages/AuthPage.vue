@@ -35,7 +35,7 @@ export default {
   name: "AuthPage",
   data() {
     return {
-      tab: "cadastro"
+      tab: "login"
     };
   },
 
