@@ -161,6 +161,8 @@ export default {
         return showErrorMessage("Você só pode escolher 3 Deputados");
       } else {
         this.setSelectedPolitcos(temp);
+        this.selected = [];
+        //TODO rota para componente meostrando politicos selecionados
       }
     }
   },

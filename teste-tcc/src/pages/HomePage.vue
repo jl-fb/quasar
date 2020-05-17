@@ -9,8 +9,15 @@
     </div>
   </q-page>-->
   <q-page>
-    <div>
+    <div v-if="ready">
       <Tabela />
+    </div>
+    <div v-else>
+      <q-spinner-tail color="primary" size="4em" :thickness="5" class="absolute-center" />
+    </div>
+
+    <div>
+      <Politicos />
     </div>
   </q-page>
 </template>
@@ -27,8 +34,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("user", ["politicos"]),
-    ...mapGetters("user", ["getPoliticosNome"])
+    ...mapState("user", ["ready"])
   },
   methods: {
     ...mapActions("user", ["setPoliticos"])
@@ -45,10 +51,9 @@ export default {
     // }
   },
   components: {
-    Politicos: require("src/components/Home/Politicos").default,
-    Tabela: require("src/components/Home/TabelaPoliticos").default
-  },
-  computed: {}
+    Politicos: require("src/components/Politicos/Politicos").default,
+    Tabela: require("src/components/Politicos/TabelaPoliticos").default
+  }
 };
 </script>
 <style lang="scss">

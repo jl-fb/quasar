@@ -16,13 +16,14 @@ const mutations = {
 
 /**             ACTIONS              **/
 const actions = {
-	onAuthStateChange({ commit }) {
+	onAuthStateChange({ commit, dispatch }) {
 		console.log('%c AUTH CHANGE', LOG)
 		$auth.onAuthStateChanged((user) => {
 			if (user) {
 				commit('setLoggedIn', true)
 				LocalStorage.set('@loggedIn', true)
 				console.log('SETLOGIN');
+				dispatch('user/fbReadData', null, { root: true })
 				this.$router.push('/').catch(() => { })
 			} else {
 				console.log('SETLOGOUT');
